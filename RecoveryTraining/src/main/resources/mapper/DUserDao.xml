@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qg.dao.DUserDao">
+    <select id="queryByPhone" resultType="DUser">
+        select *
+        from duser
+        where phone=#{phone}
+    </select>
+
+
+    <select id="queryAll" resultType="DUser">
+        SELECT * FROM  duser
+    </select>
+
+
+    <insert id="save" parameterType="DUser">
+        INSERT  INTO  duser(name,sex,age,phone,password,hospital,department,jobTitle)
+        VALUES (#{name},#{sex},#{age},#{phone},#{password},#{hospital},#{department},#{jobTitle})
+    </insert>
+    <update id="updateDUser" parameterType="DUser">
+        update duser set name=#{name},age=#{age},sex=#{sex},hospital=#{hospital},department=#{department},jobTitle=#{jobTitle}
+        WHERE id=#{id}
+    </update>
+</mapper>

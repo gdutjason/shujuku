@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qg.dao.RcStageDao">
+
+    <insert id="save" parameterType="RcStage">
+        INSERT INTO  rcstage(mrID,num,actionId,actionName,matchValue,puserId)
+        VALUES (#{mrId},#{num},#{actionId},#{actionName},#{matchValue},#{puserId})
+    </insert>
+
+    <select id="queryAll" resultType="RcStage">
+        SELECT  * FROM rcstage
+    </select>
+
+    <delete id="delById">
+        DELETE FROM rcstage
+        WHERE id=#{id}
+    </delete>
+
+    <update id="updateMatch">
+        update rcstage
+        SET matchValue = #{matchValue}
+        WHERE id = #{id}
+    </update>
+</mapper>
