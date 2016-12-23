@@ -2,6 +2,8 @@ package com.qg.dao;
 
 import com.qg.entity.TrainFrequency;
 
+import java.util.List;
+
 public interface TrainFrequencyMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,8 @@ public interface TrainFrequencyMapper {
     int updateByPrimaryKeySelective(TrainFrequency record);
 
     int updateByPrimaryKey(TrainFrequency record);
+
+    List<TrainFrequency> selectAll();
+
+    List<TrainFrequency> selectByEndStation(Integer endStationId);
 }

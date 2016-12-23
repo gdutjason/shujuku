@@ -1,0 +1,39 @@
+package com.qg.service;
+
+import com.qg.entity.TrainFrequency;
+
+import java.util.List;
+
+/**
+ * Created by wf on 2016/12/23.
+ */
+public interface TrainFrequencyService {
+
+    /**
+     * 录入车辆班次信息
+     * @param trainFrequency
+     * @return
+     */
+    public int insert(TrainFrequency trainFrequency);
+
+    /**
+     * 通过班次id查找班次
+     * @param id
+     * @return
+     */
+    public TrainFrequency selectById(Integer id);
+
+    /**
+     * 查找所有班次
+     * @return
+     */
+    public List<TrainFrequency> selectAll();
+
+    /**
+     * 按照终点站查找班次
+     * @param endStationId
+     * @return
+     */
+    public List<TrainFrequency> selectByEndStation(Integer endStationId);
+
+}
