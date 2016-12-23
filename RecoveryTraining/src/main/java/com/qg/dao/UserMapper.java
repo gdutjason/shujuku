@@ -2,7 +2,11 @@ package com.qg.dao;
 
 import com.qg.entity.User;
 
+import java.util.List;
+import java.util.Map;
+
 public interface UserMapper {
+
     int deleteByPrimaryKey(Integer id);
 
     int insert(User record);
@@ -14,4 +18,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    List<User> selectByParameters(Map<String, Object> map);
 }

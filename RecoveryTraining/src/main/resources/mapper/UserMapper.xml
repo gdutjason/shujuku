@@ -79,4 +79,15 @@
       is_admin = #{isAdmin,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+  <select id="selectByParameters" resultMap="BaseResultMap">
+    select * from user where 1 = 1
+    <if test="map != null">
+      <foreach item="item" index="key" collection="map.entrySet()">
+        and ${key} =
+        #{item}
+      </foreach>
+    </if>
+  </select>
 </mapper>
