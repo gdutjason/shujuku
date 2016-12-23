@@ -33,10 +33,10 @@ public interface TrainFrequencyService {
 
     /**
      * 按照终点站查找班次
-     * @param endStationId
+     * @param name
      * @return
      */
-    public List<TrainFrequency> selectByEndStation(Integer endStationId);
+    public List<TrainFrequency> selectByEndStation(String name);
 
     /**
      * 获取实体类

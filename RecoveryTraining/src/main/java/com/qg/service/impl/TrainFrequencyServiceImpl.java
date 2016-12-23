@@ -46,7 +46,7 @@ public class TrainFrequencyServiceImpl implements TrainFrequencyService {
         return trainFrequencyMapper.selectAll();
     }
 
-    public List<TrainFrequency> selectByEndStation(Integer endStationId) {
-        return trainFrequencyMapper.selectByEndStation(endStationId);
+    public List<TrainFrequency> selectByEndStation(String name) {
+        return trainFrequencyMapper.selectByEndStation(name);
     }
 }

@@ -27,11 +27,11 @@
         from train_frequency
     </select>
 
-    <select id="selectByEndStation" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    <select id="selectByEndStation" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
-        <include refid="Base_Column_List" />
-        from train_frequency
-        where end_station_id = #{endStationId, jdbcType=INTEGER}
+          train_frequency.id,begin_time,end_time,begin_station_id,end_station_id,max_num,train_id,remain_num
+        from train_frequency, station
+        where end_station_id = station.id and station.name = #{name, jdbcType=VARCHAR}
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >

@@ -60,11 +60,11 @@ public class TrainFrequencyController {
         return trainFrequencyService.selectById(id);
     }
 
-    @RequestMapping("/selectByEndStationId")
+    @RequestMapping("/selectByEndStationName")
     @ResponseBody
-    public String selectByEndStationId(@RequestParam("endStationId") Integer id) {
+    public String selectByEndStationId(@RequestParam("endStationName") String name) {
         List<TrainFrequency> list = new ArrayList<>();
-        list = trainFrequencyService.selectByEndStation(id);
+        list = trainFrequencyService.selectByEndStation(name);
         return GsonUtil.gson.toJson(list);
     }
 

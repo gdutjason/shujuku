@@ -19,5 +19,5 @@ public interface TrainFrequencyMapper {
 
     List<TrainFrequency> selectAll();
 
-    List<TrainFrequency> selectByEndStation(Integer endStationId);
+    List<TrainFrequency> selectByEndStation(String name);
 }
