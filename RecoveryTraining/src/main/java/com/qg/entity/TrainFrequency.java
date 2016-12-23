@@ -17,6 +17,8 @@ public class TrainFrequency {
 
     private Integer trainId;
 
+    private Integer remainNum;
+
     public Integer getId() {
         return id;
     }
@@ -71,5 +73,13 @@ public class TrainFrequency {
 
     public void setTrainId(Integer trainId) {
         this.trainId = trainId;
+    }
+
+    public Integer getRemainNum() {
+        return remainNum;
+    }
+
+    public void setRemainNum(Integer remainNum) {
+        this.remainNum = remainNum;
     }
 }

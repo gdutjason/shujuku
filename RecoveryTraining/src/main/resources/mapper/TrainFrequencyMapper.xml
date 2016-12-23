@@ -9,6 +9,243 @@
     <result column="end_station_id" jdbcType="INTEGER" property="endStationId" />
     <result column="max_num" jdbcType="INTEGER" property="maxNum" />
     <result column="train_id" jdbcType="INTEGER" property="trainId" />
+    <result column="remain_num" jdbcType="INTEGER" property="remainNum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, begin_time, end_time, begin_station_id, end_station_id, max_num, train_id, remain_num
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from train_frequency
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from train_frequency
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qg.entity.TrainFrequency">
+    insert into train_frequency (id, begin_time, end_time, 
+      begin_station_id, end_station_id, max_num, 
+      train_id, remain_num)
+    values (#{id,jdbcType=INTEGER}, #{beginTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{beginStationId,jdbcType=INTEGER}, #{endStationId,jdbcType=INTEGER}, #{maxNum,jdbcType=INTEGER}, 
+      #{trainId,jdbcType=INTEGER}, #{remainNum,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qg.entity.TrainFrequency">
+    insert into train_frequency
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="beginTime != null">
+        begin_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="beginStationId != null">
+        begin_station_id,
+      </if>
+      <if test="endStationId != null">
+        end_station_id,
+      </if>
+      <if test="maxNum != null">
+        max_num,
+      </if>
+      <if test="trainId != null">
+        train_id,
+      </if>
+      <if test="remainNum != null">
+        remain_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="beginTime != null">
+        #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="beginStationId != null">
+        #{beginStationId,jdbcType=INTEGER},
+      </if>
+      <if test="endStationId != null">
+        #{endStationId,jdbcType=INTEGER},
+      </if>
+      <if test="maxNum != null">
+        #{maxNum,jdbcType=INTEGER},
+      </if>
+      <if test="trainId != null">
+        #{trainId,jdbcType=INTEGER},
+      </if>
+      <if test="remainNum != null">
+        #{remainNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qg.entity.TrainFrequency">
+    update train_frequency
+    <set>
+      <if test="beginTime != null">
+        begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="beginStationId != null">
+        begin_station_id = #{beginStationId,jdbcType=INTEGER},
+      </if>
+      <if test="endStationId != null">
+        end_station_id = #{endStationId,jdbcType=INTEGER},
+      </if>
+      <if test="maxNum != null">
+        max_num = #{maxNum,jdbcType=INTEGER},
+      </if>
+      <if test="trainId != null">
+        train_id = #{trainId,jdbcType=INTEGER},
+      </if>
+      <if test="remainNum != null">
+        remain_num = #{remainNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qg.entity.TrainFrequency">
+    update train_frequency
+    set begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      begin_station_id = #{beginStationId,jdbcType=INTEGER},
+      end_station_id = #{endStationId,jdbcType=INTEGER},
+      max_num = #{maxNum,jdbcType=INTEGER},
+      train_id = #{trainId,jdbcType=INTEGER},
+      remain_num = #{remainNum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.qg.entity.TrainFrequency">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="begin_time" jdbcType="TIMESTAMP" property="beginTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="begin_station_id" jdbcType="INTEGER" property="beginStationId" />
+    <result column="end_station_id" jdbcType="INTEGER" property="endStationId" />
+    <result column="max_num" jdbcType="INTEGER" property="maxNum" />
+    <result column="train_id" jdbcType="INTEGER" property="trainId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, begin_time, end_time, begin_station_id, end_station_id, max_num, train_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from train_frequency
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from train_frequency
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qg.entity.TrainFrequency">
+    insert into train_frequency (id, begin_time, end_time, 
+      begin_station_id, end_station_id, max_num, 
+      train_id)
+    values (#{id,jdbcType=INTEGER}, #{beginTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{beginStationId,jdbcType=INTEGER}, #{endStationId,jdbcType=INTEGER}, #{maxNum,jdbcType=INTEGER}, 
+      #{trainId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qg.entity.TrainFrequency">
+    insert into train_frequency
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="beginTime != null">
+        begin_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="beginStationId != null">
+        begin_station_id,
+      </if>
+      <if test="endStationId != null">
+        end_station_id,
+      </if>
+      <if test="maxNum != null">
+        max_num,
+      </if>
+      <if test="trainId != null">
+        train_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="beginTime != null">
+        #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="beginStationId != null">
+        #{beginStationId,jdbcType=INTEGER},
+      </if>
+      <if test="endStationId != null">
+        #{endStationId,jdbcType=INTEGER},
+      </if>
+      <if test="maxNum != null">
+        #{maxNum,jdbcType=INTEGER},
+      </if>
+      <if test="trainId != null">
+        #{trainId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qg.entity.TrainFrequency">
+    update train_frequency
+    <set>
+      <if test="beginTime != null">
+        begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="beginStationId != null">
+        begin_station_id = #{beginStationId,jdbcType=INTEGER},
+      </if>
+      <if test="endStationId != null">
+        end_station_id = #{endStationId,jdbcType=INTEGER},
+      </if>
+      <if test="maxNum != null">
+        max_num = #{maxNum,jdbcType=INTEGER},
+      </if>
+      <if test="trainId != null">
+        train_id = #{trainId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qg.entity.TrainFrequency">
+    update train_frequency
+    set begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      begin_station_id = #{beginStationId,jdbcType=INTEGER},
+      end_station_id = #{endStationId,jdbcType=INTEGER},
+      max_num = #{maxNum,jdbcType=INTEGER},
+      train_id = #{trainId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.qg.entity.TrainFrequency">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="begin_time" jdbcType="TIMESTAMP" property="beginTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="begin_station_id" jdbcType="INTEGER" property="beginStationId" />
+    <result column="end_station_id" jdbcType="INTEGER" property="endStationId" />
+    <result column="max_num" jdbcType="INTEGER" property="maxNum" />
+    <result column="train_id" jdbcType="INTEGER" property="trainId" />
   </resultMap>
   <sql id="Base_Column_List">
     id, begin_time, end_time, begin_station_id, end_station_id, max_num, train_id
