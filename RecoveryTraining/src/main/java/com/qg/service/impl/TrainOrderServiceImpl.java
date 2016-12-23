@@ -1,11 +1,10 @@
 package com.qg.service.impl;
 
 import com.qg.dao.OrderRelationMapper;
+import com.qg.dao.RelationMapper;
 import com.qg.dao.TrainFrequencyMapper;
 import com.qg.dao.TrainOrderMapper;
-import com.qg.entity.OrderRelationKey;
-import com.qg.entity.TrainFrequency;
-import com.qg.entity.TrainOrder;
+import com.qg.entity.*;
 import com.qg.service.TrainOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +32,10 @@ public class TrainOrderServiceImpl implements TrainOrderService {
 
     @Autowired
     private TrainOrderMapper trainOrderMapper;
+
+    @Autowired
+    private RelationMapper relationMapper;
+
 
     private static ReentrantLock lock = new ReentrantLock(true);
 
@@ -62,26 +65,53 @@ public class TrainOrderServiceImpl implements TrainOrderService {
             lock.unlock();
 
             //插入订单
-            Date now = new Date();
+            int orderId = (int)System.currentTimeMillis();
             TrainOrder trainOrder = new TrainOrder();
-            trainOrder.setCreateTime(now);
+            trainOrder.setId(orderId); //这里留个坑
+            trainOrder.setCreateTime(new Date());
             trainOrder.setTrainFrequencyId(frequencyId);
             trainOrder.setUserId(userId);
             trainOrderMapper.insert(trainOrder);
 
             //插入订单-联系人中间表
-            Map<String, Date> map = new HashMap<>();
-            map.put("create_time", now);
-            Map<String, Object> mybatisMap = new HashMap<>();
-            mybatisMap.put("map", map);
-            Integer orderId = trainOrderMapper.selectByParameters(mybatisMap).get(0).getId();
             for(String relaId : relationtList) {
                 OrderRelationKey key = new OrderRelationKey();
                 key.setOrderId(orderId);
                 key.setRelationId(relaId);
+                orMapper.insert(key);
             }
             result.put("result", true);
         }
         return result;
+    }
+
+    @Override
+    public List<TrainOrder> getAllUserOrder(User user) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("user_id", user.getId());
+        return trainOrderMapper.selectByParameters(getMybatisMap(map));
+    }
+
+    @Override
+    public List<Relation> getRelationInOrder(Integer orderId) {
+        return relationMapper.getRelationInOrder(orderId);
+    }
+
+    @Override
+    public void refund(Integer orderId) {
+        TrainOrder order = trainOrderMapper.selectByPrimaryKey(orderId);
+        trainOrderMapper.deleteByPrimaryKey(orderId);
+
+        lock.lock();
+        TrainFrequency frequency = frequencyMapper.selectByPrimaryKey(order.getTrainFrequencyId());
+        frequency.setRemainNum(frequency.getRemainNum() + getRelationInOrder(orderId).size());
+        frequencyMapper.updateByPrimaryKey(frequency);
+        lock.unlock();
+    }
+
+    private Map<String, Object> getMybatisMap(Map<String, Object> map) {
+        Map<String, Object> mybatisMap = new HashMap<>();
+        mybatisMap.put("map", map);
+        return mybatisMap;
     }
 }
