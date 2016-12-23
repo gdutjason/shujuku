@@ -1,6 +1,11 @@
 package com.qg.service;
 
 
+import com.qg.entity.Relation;
+import com.qg.entity.TrainFrequency;
+import com.qg.entity.TrainOrder;
+import com.qg.entity.User;
+
 import java.util.List;
 import java.util.Map;
 
@@ -17,4 +22,19 @@ public interface TrainOrderService {
     public Map<String, Object> sell(List<String> relationtList,
                                     Integer frequencyId,
                                     Integer userId);
+
+    /**
+     * 获取某个用户的全部订单
+     */
+    public List<TrainOrder> getAllUserOrder(User user);
+
+    /**
+     * 获取某个订单中所包含的联系订票人
+     */
+    public List<Relation> getRelationInOrder(Integer orderId);
+
+    /**
+     * 取消订单
+     */
+    public void refund(Integer orderId);
 }

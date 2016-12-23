@@ -2,6 +2,8 @@ package com.qg.dao;
 
 import com.qg.entity.Relation;
 
+import java.util.List;
+
 public interface RelationMapper {
     int deleteByPrimaryKey(String certNo);
 
@@ -14,4 +16,6 @@ public interface RelationMapper {
     int updateByPrimaryKeySelective(Relation record);
 
     int updateByPrimaryKey(Relation record);
+
+    List<Relation> getRelationInOrder(Integer orderId);
 }

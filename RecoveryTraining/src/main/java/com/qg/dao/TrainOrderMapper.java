@@ -1,5 +1,6 @@
 package com.qg.dao;
 
+import com.qg.entity.Relation;
 import com.qg.entity.TrainOrder;
 
 import java.util.List;

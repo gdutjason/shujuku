@@ -1,10 +1,12 @@
 package com.qg.service;
 
+import com.qg.entity.Train;
 import com.qg.entity.TrainFrequency;
 
 import java.util.List;
 
 /**
+ *
  * Created by wf on 2016/12/23.
  */
 public interface TrainFrequencyService {
@@ -36,4 +38,14 @@ public interface TrainFrequencyService {
      */
     public List<TrainFrequency> selectByEndStation(Integer endStationId);
 
+    /**
+     * 获取实体类
+     */
+    public TrainFrequency getEntity(Integer frequencyId);
+
+
+    /**
+     * 获取车次的火车
+     */
+    public Train getTrain(Integer frequencyId);
 }
