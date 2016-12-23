@@ -3,6 +3,7 @@ package com.qg.dao;
 import com.qg.entity.Train;
 
 public interface TrainMapper {
+
     int deleteByPrimaryKey(Integer id);
 
     int insert(Train record);
