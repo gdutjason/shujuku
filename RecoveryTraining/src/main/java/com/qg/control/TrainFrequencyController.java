@@ -1,8 +1,10 @@
 package com.qg.control;
 
+import com.qg.control.base.BaseController;
 import com.qg.entity.TrainFrequency;
 import com.qg.service.TrainFrequencyService;
 import com.qg.util.GsonUtil;
+import com.qg.util.NotEmptyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +32,11 @@ public class TrainFrequencyController {
     public String insertTrainFrequency(TrainFrequency trainFrequency) {
         Map<String, Object> result = new HashMap<>();
         int flag = 0;
-        System.out.println(trainFrequency.getEndTime());
+        if(!NotEmptyUtil.isNotNull(trainFrequency.getBeginTime(), trainFrequency.getEndTime(),
+                trainFrequency.getBeginStationId(), trainFrequency.getEndStationId()
+                ,trainFrequency.getTrainId())) {
+            return BaseController.UN_SUCCESS;
+        }
         try {
             flag = trainFrequencyService.insert(trainFrequency);
         }   catch(Exception e) {
