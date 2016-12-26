@@ -8,4 +8,5 @@ public interface UserRelationMapper {
     int insert(UserRelationKey record);
 
     int insertSelective(UserRelationKey record);
+
 }

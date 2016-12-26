@@ -18,4 +18,6 @@ public interface RelationMapper {
     int updateByPrimaryKey(Relation record);
 
     List<Relation> getRelationInOrder(Integer orderId);
+
+    List<Relation> selectByUser(Integer userId);
 }

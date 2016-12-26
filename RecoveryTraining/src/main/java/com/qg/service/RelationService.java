@@ -2,6 +2,8 @@ package com.qg.service;
 
 import com.qg.entity.Relation;
 
+import java.util.List;
+
 
 /**
  * Created by wf on 2016/12/23.
@@ -28,5 +30,12 @@ public interface RelationService {
      * @return
      */
     public int delete(String id);
+
+    /**
+     * 根据用户名获取联系人
+     * @param userId
+     * @return
+     */
+    List<Relation> selectByUser(Integer userId);
 
 }
