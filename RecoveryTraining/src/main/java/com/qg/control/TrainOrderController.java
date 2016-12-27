@@ -41,9 +41,7 @@ public class TrainOrderController {
      */
     @RequestMapping("/sell")
     public Object sell(HttpSession httpSession, String[] relationIdGroup, Integer frequencyId) {
-        if(httpSession.getAttribute("user") == null) {
-            return BaseController.UN_LOGIN;
-        }
+       
         if(relationIdGroup.length == 0) {
             return BaseController.SUCCESS;
         }
@@ -56,9 +54,7 @@ public class TrainOrderController {
      */
     @RequestMapping("/getAllOrder")
     public Object getAllOrder(HttpSession session) {
-        if(session.getAttribute("user") == null) {
-            return BaseController.UN_LOGIN;
-        }
+        
 
         User user = (User) session.getAttribute("user");
         List<TrainOrder> orderList = orderService.getAllUserOrder(user);
@@ -84,9 +80,7 @@ public class TrainOrderController {
      */
     @RequestMapping("/refund")
     public String refund(HttpSession session, Integer orderId) {
-        if(session.getAttribute("user") == null) {
-            return BaseController.UN_LOGIN;
-        }
+        
         orderService.refund(orderId);
         return BaseController.SUCCESS;
     }
