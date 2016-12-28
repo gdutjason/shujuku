@@ -71,7 +71,7 @@ public class TrainFrequencyServiceImpl implements TrainFrequencyService {
             stationService.insert(s2);
         }
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date bTime = null;
         Date eTime = null;
         try {
@@ -88,7 +88,7 @@ public class TrainFrequencyServiceImpl implements TrainFrequencyService {
         trainFrequency.setEndStationId(s2.getId());
         trainFrequency.setTrainId(train.getId());
         trainFrequencyMapper.insert(trainFrequency);
-        result.put("result", true);
+        result.put("result", 1);
         return result;
     }
 

@@ -1,8 +1,6 @@
 package com.qg.control;
 
 import com.qg.control.base.BaseController;
-import com.qg.entity.Station;
-import com.qg.entity.Train;
 import com.qg.entity.TrainFrequency;
 import com.qg.entity.vo.TrainFrequencyVo;
 import com.qg.service.StationService;
@@ -16,10 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * 班次类
@@ -58,6 +54,13 @@ public class TrainFrequencyController {
     public String selectAll() {
         List<TrainFrequency> list = new ArrayList<>();
         list = trainFrequencyService.selectAll();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        for(Iterator<TrainFrequency> it = list.iterator(); it.hasNext();) {
+            TrainFrequency tf = it.next();
+            if(tf.getEndTime().compareTo(date) < 0)
+                it.remove();
+        }
         return GsonUtil.gson.toJson(list);
     }
 
