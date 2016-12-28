@@ -21,4 +21,12 @@ public class StationServiceImpl implements StationService {
     public Station getStationById(Serializable id) {
         return stationMapper.selectByPrimaryKey((Integer)id);
     }
+
+    public Station getStationByName(String name) {
+        return stationMapper.selectByName(name);
+    }
+
+    public int insert(Station station) {
+        return stationMapper.insert(station);
+    }
 }

@@ -15,4 +15,6 @@ public interface TrainMapper {
     int updateByPrimaryKeySelective(Train record);
 
     int updateByPrimaryKey(Train record);
+
+    Train selectByName(String name);
 }

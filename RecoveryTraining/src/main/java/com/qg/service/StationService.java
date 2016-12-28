@@ -16,4 +16,18 @@ public interface StationService {
      * @return
      */
     public Station getStationById(Serializable id);
+
+    /**
+     * 根据名字获取车站
+     * @param name
+     * @return
+     */
+    public Station getStationByName(String name);
+
+    /**
+     * 添加车站
+     * @param station
+     * @return
+     */
+    public int insert(Station station);
 }

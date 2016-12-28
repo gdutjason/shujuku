@@ -1,8 +1,13 @@
 package com.qg.control;
 
 import com.qg.control.base.BaseController;
+import com.qg.entity.Station;
+import com.qg.entity.Train;
 import com.qg.entity.TrainFrequency;
+import com.qg.entity.vo.TrainFrequencyVo;
+import com.qg.service.StationService;
 import com.qg.service.TrainFrequencyService;
+import com.qg.service.TrainService;
 import com.qg.util.GsonUtil;
 import com.qg.util.NotEmptyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,23 +31,25 @@ public class TrainFrequencyController {
 
     @Autowired
     private TrainFrequencyService trainFrequencyService;
+    @Autowired
+    private TrainService trainService;
+    @Autowired
+    private StationService stationService;
 
     @RequestMapping("/insertTrainFrequency")
     @ResponseBody
-    public String insertTrainFrequency(TrainFrequency trainFrequency) {
+    public String insertTrainFrequency(TrainFrequencyVo tfVo) {
         Map<String, Object> result = new HashMap<>();
-        int flag = 0;
-        if(!NotEmptyUtil.isNotNull(trainFrequency.getBeginTime(), trainFrequency.getEndTime(),
-                trainFrequency.getBeginStationId(), trainFrequency.getEndStationId()
-                ,trainFrequency.getTrainId())) {
+        if(!NotEmptyUtil.isNotNull(tfVo.getBeginTime(), tfVo.getEndTime(),
+                tfVo.getBeginStationName(), tfVo.getEndStationName()
+                ,tfVo.getTrainName(), tfVo.getMaxNum())) {
             return BaseController.UN_SUCCESS;
         }
         try {
-            flag = trainFrequencyService.insert(trainFrequency);
+            result = trainFrequencyService.insert(tfVo);
         }   catch(Exception e) {
             e.printStackTrace();
         }
-        result.put("result", flag);
         return GsonUtil.gson.toJson(result);
     }
 
@@ -67,6 +74,5 @@ public class TrainFrequencyController {
         list = trainFrequencyService.selectByEndStation(name);
         return GsonUtil.gson.toJson(list);
     }
-
 
 }

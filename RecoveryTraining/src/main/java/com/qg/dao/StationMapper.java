@@ -14,4 +14,6 @@ public interface StationMapper {
     int updateByPrimaryKeySelective(Station record);
 
     int updateByPrimaryKey(Station record);
+
+    Station selectByName(String name);
 }

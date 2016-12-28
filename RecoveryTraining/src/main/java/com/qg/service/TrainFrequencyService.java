@@ -2,8 +2,10 @@ package com.qg.service;
 
 import com.qg.entity.Train;
 import com.qg.entity.TrainFrequency;
+import com.qg.entity.vo.TrainFrequencyVo;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -13,10 +15,10 @@ public interface TrainFrequencyService {
 
     /**
      * 录入车辆班次信息
-     * @param trainFrequency
+     * @param tfVO
      * @return
      */
-    public int insert(TrainFrequency trainFrequency);
+    public Map<String, Object> insert(TrainFrequencyVo tfVO);
 
     /**
      * 通过班次id查找班次
